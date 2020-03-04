@@ -55,6 +55,41 @@ namespace lab_4
         private void lbxStock_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+            //stock levels
+            var query = from p in db.Products
+                        where p.UnitsInStock < 50
+                        orderby p.ProductName
+                        select p.ProductName;
+
+
+            //getting the selected item in the list box.
+            string selected = lbxStock.SelectedItem as string;
+
+            switch (selected)
+            {
+                case "Low":
+                    //low is selected by default because of the above query
+                    break;
+
+                case "Normal":
+                    query = from p in db.Products
+                            where p.UnitsInStock < 50 && p.UnitsInStock <= 100
+                            orderby p.ProductName
+                            select p.ProductName;
+                    break;
+                case "Overstocked":
+                    query = from p in db.Products
+                            where p.UnitsInStock > 50
+                            orderby p.ProductName
+                            select p.ProductName;
+                    break;
+
+            }
+            lbxProducts.ItemsSource = query.ToList();
+
+
+
+
         }
 
         private void lbxSuppliers_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -66,8 +101,8 @@ namespace lab_4
         {
 
         }
-
-        public enum StockLevel { low, Normal, Overstocked }
-
+        #region enums
+        public enum StockLevel { Low, Normal, Overstocked }
+        #endregion enums
     }
 }
