@@ -21,7 +21,7 @@
 
         <ListBox Grid.Row="1" Margin="10" Name="lbxCustomers" SelectionChanged="lbxCustomers_SelectionChanged"/>
 
-        <ListBox Grid.Row="1" Grid.Column="1" Margin="10" Name="lbxOrders" SelectionChanged="lbxOrders_SelectionChanged" />
+        <ListBox Grid.Row="1" Grid.Column="1" Margin="10" Name="lbxOrders" SelectionChanged="lbxOrders_SelectionChanged" SelectedValuePath="SalesOrderID" />
 
         <DataGrid Grid.Row="3" Margin="10" Name="dgOrderDetails" Grid.ColumnSpan="2"/>
 

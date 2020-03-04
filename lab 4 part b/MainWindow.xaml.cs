@@ -50,16 +50,32 @@ namespace lab_4_part_b
                 lbxOrders.ItemsSource = query.ToList();
             }
 
-            
+
         }
 
         private void lbxOrders_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            int orderID = Convert.ToInt32(lbxOrders.SelectedValue);
 
+            if (orderID > 0)
+            {
+                var query = from od in db.SalesOrderDetails
+                            where od.SalesOrderID == orderID
+                            select new
+                            {
+                                ProductName = od.Product.Name,
+                                od.UnitPrice,
+                                od.UnitPriceDiscount,
+                                od.OrderQty,
+                                od.LineTotal
+                            };
+                dgOrderDetails.ItemsSource = query.ToList();
+            }
 
 
 
         }
+
 
 
     }
