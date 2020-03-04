@@ -94,6 +94,17 @@ namespace lab_4
 
         private void lbxSuppliers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            //selected value path
+            int SupplierId = Convert.ToInt32(lbxSuppliers.SelectedValue);
+
+            var query = from p in db.Products
+                        where p.SupplierID == SupplierId
+                        orderby p.ProductName
+                        select p.ProductName;
+
+            lbxProducts.ItemsSource = query.ToList();
+
+
 
         }
 
