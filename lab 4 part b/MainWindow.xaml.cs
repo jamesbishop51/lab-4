@@ -39,10 +39,25 @@ namespace lab_4_part_b
         private void lbxCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+            string customer = lbxCustomers.SelectedItem as string;
+
+            if (customer != null)
+            {
+
+                var query = from o in db.SalesOrderHeaders
+                            where o.Customer.CompanyName.Equals(customer)
+                            select o;
+                lbxOrders.ItemsSource = query.ToList();
+            }
+
+            
         }
 
         private void lbxOrders_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
+
+
 
         }
 
