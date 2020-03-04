@@ -30,15 +30,26 @@ namespace lab_4
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             // sets the list for the stock level list box.
-           lbxStock.ItemsSource = Enum.GetNames(typeof(StockLevel));
+            lbxStock.ItemsSource = Enum.GetNames(typeof(StockLevel));
 
             // query that will set the source for the suppliers list box.
             var query1 = from s in db.Suppliers
                          orderby s.CompanyName
                          select new
                          {
-
+                             SupplierName = s.CompanyName,
+                             SupplierID = s.SupplierID,
+                             Country = s.Country
                          };
+
+            lbxSuppliers.ItemsSource = query1.ToList();
+
+            var query2 = query1
+                .OrderBy(s => s.Country)
+                .Select(s => s.Country);
+
+            var countries = query2.ToList();
+            lbxCountries.ItemsSource = countries.Distinct();
         }
 
         private void lbxStock_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -57,6 +68,6 @@ namespace lab_4
         }
 
         public enum StockLevel { low, Normal, Overstocked }
-        
+
     }
 }
