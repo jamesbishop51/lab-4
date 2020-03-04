@@ -110,6 +110,15 @@ namespace lab_4
 
         private void lbxCountries_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            string country = (string)(lbxCountries.SelectedValue);
+
+            var query = from p in db.Products
+                        where p.Supplier.Country == country
+                        orderby p.ProductName
+                        select p.ProductName;
+
+            lbxProducts.ItemsSource = query.ToList();
+
 
         }
         #region enums
