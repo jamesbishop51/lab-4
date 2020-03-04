@@ -24,5 +24,15 @@ namespace lab_4_part_b
         {
             InitializeComponent();
         }
+
+        private void lbxCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void lbxOrders_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

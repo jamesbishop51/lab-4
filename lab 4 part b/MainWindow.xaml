@@ -7,10 +7,30 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <ListBox Grid.Row="1" Margin="10" Name="lbxCustomers" SelectionChanged="lbxCustomers_SelectionChanged"/>
+
+        <ListBox Grid.Row="1" Grid.Column="1" Margin="10" Name="lbxOrders" SelectionChanged="lbxOrders_SelectionChanged" />
+
+        <DataGrid Grid.Row="3" Margin="10" Name="dgOrderDetails" Grid.ColumnSpan="2"/>
+
+        <Label Content="customers"/>
         
-        
-        
-        
-        
+        <Label Content="Order Summary" Grid.Column="1"/>
+
+        <Label Content="Order Details" Grid.Row="2" Grid.ColumnSpan="2"/>
+
+
     </Grid>
 </Window>
